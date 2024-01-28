@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-# Usage: python3 frequence.py fichier_texte
-
-
 import sys
 from collections import Counter
 
@@ -11,25 +8,19 @@ Occurences = {}
 length = 0
 
 if __name__ == "__main__":
-	#if len(sys.argv) != 2:
-	#	sys.exit()
+    # Check if a file name is provided as an argument
+    if len(sys.argv) == 2:
+        # Read from the file
+        f = sys.argv[1]
+        with open(f, "r") as file:
+            s = file.read().strip()
+    else:
+        # Read from stdin
+        s = sys.stdin.read().strip()
 
-	print(f"Arguments count: {len(sys.argv)}")
-    
-	for i, arg in enumerate(sys.argv):
-		print(f"Argument {i:>6}: {arg}" , flush = True)
-	
-	with open(sys.argv[1] , "r") as file:
-		s = file.read().strip()
-		Occurences = Counter(s)
-		length = len(s)
+    Occurences = Counter(s)
+    length = len(s)
 
-	# Print the frequences
-	for c in alphabet:
-		if c in Occurences:
-			print (c, Occurences[c] / length)
-		else:
-			print (c, 0.0)
-
-
-#"HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
+    # Print the frequencies
+    for c in alphabet:
+        print(c, Occurences[c] / length if c in Occurences else 0.0)
