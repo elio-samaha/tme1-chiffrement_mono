@@ -4,6 +4,17 @@ import sys
 import random
 import operator
 
+#Exo 3)1 :
+
+#⇒ KSWFGAVQXHIBMPUTOYRNJCZELD (Alphabet de Chiffrement Original)
+#⇒ FLVZXDEJKUAYMTQNHSBPOGCIRW (Alphabet Réciproque de Déchiffrement)
+
+#Exo 3)2 :
+
+# Usage python3 crypt_auto_mono.py file
+# Where file contains the ciphertext
+# It is recommended to write a few functions for this exercise
+
 # Assume we are working with an uppercase alphabet
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -76,10 +87,12 @@ for iter in range(max_iterations):
         plaintext = new_plaintext
         plaintext_eval = new_eval
 
-# Output the results
-print("Texte chiffré\n" + ciphertext)
-print("Évaluation " + str(evaluate(ciphertext, tetragram_freqs)))
-print("\nAprès " + str(max_iterations) + " itérations, texte déchiffré\n" + plaintext)
-print("Substitution appliquée au texte fourni " + decryption_key)
-print("Clé " + decryption_key)
-print("Évaluation " + str(plaintext_eval))
+
+# Do not modify these lines except for variable names
+print ("texte chiffré\n" + ciphertext)
+print ("évaluation " + str(ciphertext_eval))
+print ("\nAprès " + str(iter) + " itérations, texte déchiffré\n" + plaintext)
+print ("substitution appliquée au texte fourni " + encryption_key)
+print ("clef " + decryption_key)
+print ("évaluation " + str(plaintext_eval))
+
