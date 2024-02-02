@@ -88,6 +88,8 @@ for iter in range(max_iterations):
         plaintext_eval = new_eval
 
 
+
+
 # Do not modify these lines except for variable names
 print ("texte chiffré\n" + ciphertext)
 print ("évaluation " + str(ciphertext_eval))

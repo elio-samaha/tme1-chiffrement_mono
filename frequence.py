@@ -21,6 +21,7 @@ if __name__ == "__main__":
     Occurences = Counter(s)
     length = len(s)
 
+
     # Print the frequencies
     for c in alphabet:
         print(c, Occurences[c] / length if c in Occurences else 0.0)
