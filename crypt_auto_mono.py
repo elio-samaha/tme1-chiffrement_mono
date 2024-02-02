@@ -76,8 +76,6 @@ if __name__ == "__main__":
         i2 = randint(0,25)
         while(i1==i2) :
             i2 = randint(0,25)
-        if i1>i2 : 
-            i1,i2 = i2, i1
         
         nvtexte = substitution(decryption_key[i1], decryption_key[i2], plaintext )
         nvscore = score(nvtexte)
