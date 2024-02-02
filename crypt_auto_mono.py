@@ -6,6 +6,9 @@ import operator
 from collections import Counter, defaultdict
 import json
 import csv
+import sys
+from math import log 
+from random import randint
 
 #Exo 3)1 :
 
@@ -35,12 +38,62 @@ with open("nb_tetra_fr.csv" , "r") as file:
             nb_tetra[parts[0]] = int(parts[1])
 
 
-print((nb_tetra["aebsc"]))
+iter_max = 6000
+surplace_max = 1200
+surplace = 0
+
+def score(texte):
+    e = 0
+    for i in range(len(texte) - 3) :
+        e += log(nb_tetra[texte[i:i+4]])
+    return e
+
+def substitution(c1,c2, texte) :
+    nvtexte = ""
+    for c in texte :
+        if c == c1 :
+            nvtexte += c2
+        elif c==c2 :
+            nvtexte +=c1
+        else :
+            nvtexte +=c
+    return nvtexte
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.exit()
     file_name = sys.argv[1]
+    ciphertext = open(file_name).read()
+
+
+    plaintext = ciphertext
+    ciphertext_eval = score(ciphertext)
+    plaintext_eval = ciphertext_eval
+    nvscore = 0
+    nvtexte = ""
+    while iter < iter_max and surplace <surplace_max :
+        i1 = randint(0,25)
+        i2 = randint(0,25)
+        while(i1==i2) :
+            i2 = randint(0,25)
+        if i1>i2 : 
+            i1,i2 = i2, i1
+        
+        nvtexte = substitution(decryption_key[i1], decryption_key[i2], plaintext )
+        nvscore = score(nvtexte)
+        if nvscore >= plaintext_eval :
+            plaintext_eval = nvscore
+            plaintext = nvtexte
+            decryption_key = substitution(decryption_key[i1], decryption_key[i2], decryption_key )
+        else:
+            surplace += 1
+        iter += 1
+
+    res = ''
+    for c in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
+        res+= chr(decryption_key.index(c) + ord('A'))
+
+    encryption_key = res
 
     # Do not modify these lines except for variable names
     print ("texte chiffré\n" + ciphertext)
